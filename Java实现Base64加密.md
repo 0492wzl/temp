@@ -1,8 +1,8 @@
 ---
 title: Java实现Base64加密
 date: 2016-07-25 22:56:13
-categories: 工作
-tags: 笔记
+categories: JAVA
+tags: JAVA加解密
 
 ---
 
@@ -15,7 +15,9 @@ tags: 笔记
 - 加密密钥：通过加密算法进行加密操作用的密钥
 - 解密：将密文转为明文的过程
 - 解密算法：密文转为明文的算法
-- 解密密钥：通过解密算法进行解密操作用的密钥
+- 解密密钥：通过解密算法进行解密操作用的密钥  
+
+<!--more-->
 
 ### （二）
 - 密码分析：截获密文者试图通过分析截获的密文从而推断出原来的明文或密钥的过程
@@ -27,6 +29,9 @@ tags: 笔记
 - 密码协议：也称安全协议，指以密码学为基础的消息交换的通信协议，目的是在网络环境中提供安全的服务。
 - 密码系统：指用于加密、解密的系统。
 - 柯克霍夫原则：数据的安全基于密钥而不是算法的保密。即系统的安全取决于密钥，对密钥保护，对算法公开。--现代密码学设计的基本原则。（督促算法的进步，同时审查当前算法是否存在不足）
+
+
+----------
 
 ## 密码分类
 ### 时间
@@ -51,6 +56,9 @@ tags: 笔记
 - 分组加密：指加密时将明文分成固定长度的组，用同一密钥和算法对每一块加密，输入也是固定长度的密文。对用于网络加密。
 - 流密码：也称序列密码。指加密时每次加密一位或者一个字节明文。
 
+
+----------
+
 ## 散列函数
 ### 用来验证数据的完整性。
 ### 特点
@@ -63,10 +71,15 @@ tags: 笔记
 - SHA--安全散列算法
 - MAC--消息认证码算法（MAC--苹果操作系统）
  
+
+----------
+
 ## 数字签名
 - 主要是针对以数字的形式存储的消息进行的处理  
 - 会产生一个带有操作者身份信息的编码  
 - 执行数字前面的实体签名者，签名过程做的算法叫签名算法
+
+----------
 
 ## OSI安全体系（Open System Interconnection）
 ### 网络通讯
@@ -95,6 +108,8 @@ tags: 笔记
 4. 数据完整性服务
 5. 抗否认性服务
 
+----------
+
 ## TCP/IP安全体系
 ### 网络通讯
 1. 网络接口层		对应OSI(1,2)
@@ -115,8 +130,9 @@ tags: 笔记
 访问控制服务---3访问控制机制、7路由控制机制
 认证（鉴别）服务---5认证机制、2数字签名机制
 
-## Java
+----------
 
+## Java
 ### 安全组成
 - **JCA(Java Cryptography Architecture)**  
 提供基本的加密框架，如消息摘要、数字签名等
@@ -147,34 +163,48 @@ tags: 笔记
 ### Base64算法
 
 1. 实现
-`encoder:aW1vb2Mgc2VjdXJpdHkgYmFzZTY0  
-decoder:imooc security base64`
+<pre>
+	encoder:aW1vb2Mgc2VjdXJpdHkgYmFzZTY0
+	decoder:imooc security base64`
+</pre>
 
- - JDK实现
-`sun.misc.BASE64Encoder encoder = new sun.misc.BASE64Encoder();  
-String encode = encoder.encode(src.getBytes());  
-System.out.println("encoder:" + encode);  
-sun.misc.BASE64Decoder decoder = new sun.misc.BASE64Decoder();  
-System.out.println("decoder:" + new String(decoder.decodeBuffer(encode)));`
+ - JDK实现  
+<pre>
+	import sun.misc.BASE64Encoder;
+　
+	BASE64Encoder encoder = new BASE64Encoder();
+	String encode = encoder.encode(src.getBytes());
+	System.out.println("encoder:" + encode);
+	BASE64Decoder decoder = new BASE64Decoder();
+	System.out.println("decoder:" + new String(decoder.decodeBuffer(encode)));
+</pre>
 
  - Commons Codec(commons-codec-1.10.jar)
-`byte[] encodeBytes = org.apache.commons.codec.binary.Base64.encodeBase64(src.getBytes());  
-System.out.println("encoder:" + new String(encodeBytes));  
-byte[] decodeBytes = org.apache.commons.codec.binary.Base64.decodeBase64(encodeBytes);  
-System.out.println("decoder:" + new String(decodeBytes));`
+<pre>
+	import org.apache.commons.codec.binary.Base64;
+　
+	byte[] encodeBytes = Base64.encodeBase64(src.getBytes());
+	System.out.println("encoder:" + new String(encodeBytes));
+	byte[] decodeBytes = Base64.decodeBase64(encodeBytes);
+	System.out.println("decoder:" + new String(decodeBytes));
+</pre>
+
 
  - Bouncy Castle(bcprov-jdk15on-149.jar)
-`byte[] encodeBytes = org.bouncycastle.util.encoders.Base64.encode(src.getBytes());  
-System.out.println("encoder:" + new String(encodeBytes));  
-byte[] decodeBytes = org.bouncycastle.util.encoders.Base64.decode(encodeBytes);  
-System.out.println("decoder:" + new String(decodeBytes));`
+<pre>
+	import org.bouncycastle.util.encoders.Base64;
+　
+	byte[] encodeBytes = Base64.encode(src.getBytes());
+	System.out.println("encoder:" + new String(encodeBytes));
+	byte[] decodeBytes = Base64.decode(encodeBytes);
+	System.out.println("decoder:" + new String(decodeBytes));
+</pre>
 
 2. 应用场景
- - e-mail
- - 密钥
- - 证书文件
- 
-3. 产生：邮件的“历史问题”
+(1)e-mail
+(2)密钥
+(3)证书文件
+3. 产生：邮件的"历史问题"
 4. 定义：基于64个字符的编码算法
 值0 1 2 3...63 (pad) 分别对应码 A~Z  a~z  0~9  +  /  =
 5. 衍生：Base16、Base32、Url Base64

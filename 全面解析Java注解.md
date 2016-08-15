@@ -15,6 +15,8 @@ Java提供了一种原程序中的元素关联任何信息和任何元数据的�
 - 源码注解:注解在源码和.class文件中都存在。如@Override,@Deprecated,@Suppvisewarnings
 - 运行时注解:在运行阶段还起作用，甚至会影响运行逻辑的注解。如@Autowired
 
+<!--more-->
+
 ### 按照来源分
 - 来自JDK的注解
 - 来自第三方的注解
@@ -106,29 +108,31 @@ for(Method m : ms){
 ### 需求
 打印出查询执行的sql
 <pre>
-public static void main(String[] args) {
-	User u1 = new User();
-	u1.setId(10);//查询id=10的user
-	
-	User u2 = new User();
-	u2.setId(12);
-	u2.setUsername("zhangsan");
-	u2.setPassword("aabbcc");
-	u2.setAge(25);
-	
-	User u3 = new User();
-	u3.setUsername("zhangsan,lisi");//查询username = zhangsan或username = lisi的user
-	
-	String sql1 = query(u1);
-	String sql2 = query(u2);
-	String sql3 = query(u3);
-	
-	System.out.println(sql1);
-	System.out.println(sql2);
-	System.out.println(sql3);
-}
+	public static void main(String[] args) {
+		User u1 = new User();
+		u1.setId(10);//查询id=10的user
+		
+		User u2 = new User();
+		u2.setId(12);
+		u2.setUsername("zhangsan");
+		u2.setPassword("aabbcc");
+		u2.setAge(25);
+		
+		User u3 = new User();
+		u3.setUsername("zhangsan,lisi");//查询username = zhangsan或username = lisi的user
+		
+		String sql1 = query(u1);
+		String sql2 = query(u2);
+		String sql3 = query(u3);
+		
+		System.out.println(sql1);
+		System.out.println(sql2);
+		System.out.println(sql3);
+	}
 </pre>
+
 ### 方法
+
 - 将实体类字段名与数据库列名对应起来
   <pre>
 	@Table("user")
@@ -150,6 +154,7 @@ public static void main(String[] args) {
 		//set...
 	}
   </pre>
+
 - 创建相应的注解@Table,@Column
 	<pre>
 	@Target({ElementType.TYPE})
@@ -165,6 +170,7 @@ public static void main(String[] args) {
 	　　String value();
 	}
 	</pre>
+
 - 定义主方法query()
 	<pre>
 	private static String query(User user) {
