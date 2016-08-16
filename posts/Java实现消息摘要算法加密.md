@@ -6,7 +6,7 @@ tags: JAVA加解密
 
 ---
 
-概述
+## 概述
 - MD(Message Digest) 消息摘要
 - SHA(Secure Hash Algorithm) 安全散列
 - MAC(Message Authentication Code) 消息认证码
@@ -83,6 +83,8 @@ tags: JAVA加解密
 - commons.codec MD5
 `org.apache.commons.codec.digest.DigestUtils.md5Hex(src.getBytes())`
 
+----------
+
 ## 消息摘要算法-SHA
 - 安全散列算法
 - 固定长度摘要信息
@@ -131,6 +133,8 @@ tags: JAVA加解密
 	或
 	org.apache.commons.codec.digest.DigestUtils.sha1Hex(src)
 </pre>
+
+----------
 
 ## 消息摘要算法-MAC
 - MAC(Message Authentication Code)

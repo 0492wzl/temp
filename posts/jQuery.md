@@ -1,8 +1,9 @@
 ---
 title: jQuery
 date: 2016-03-18 22:23:12
-categories: 工作
-tags: 笔记
+categories: jQuery
+tags: jQuery
+
 ---
 
 ### 选择器

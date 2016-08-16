@@ -1,0 +1,11 @@
+[alias]
+	st = status
+	a = add .
+	al = add --all
+	c = commit -m 'default commit message'
+	cm = commit -m
+[user]
+	name = 王一峰
+	email = wangyf@vastio.com
+[gui]
+	recentrepo = D:/gitSource/me

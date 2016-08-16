@@ -1,8 +1,8 @@
 ---
 title: git
 date: 2016-03-20 22:18:56
-categories: 工作
-tags: 版本控制
+categories: 版本控制
+tags: git
 ---
 
 ### 简介
