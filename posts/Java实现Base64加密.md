@@ -15,6 +15,7 @@ tags: JAVA加解密
 提供基于SSL的加密功能，主要用于网络传输，
 - **JAAS(Java Authentication and Authentication Service)**  
 提供了在Java平台上进行用户的身份验证的功能，即基于Java开发的系统的权限和安全是基于JAAS。
+<!--more-->
 
 - 使用JDK以外的扩展包需要修改资源文件并增加相关的内容，这是使用JDK意外的扩展包的方式之一(..\jre7\lib\security)
  1. security.provider.1=sun.security.provider.Sun

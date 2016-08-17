@@ -14,7 +14,7 @@ Java提供了一种原程序中的元素关联任何信息和任何元数据的�
 ## 注解的分类
 ### 按照运行机制分
 - 源码注解:注解只在源码中存在，编译成.class文件就不存在了
-- 编译时注解:注解在源码和.class文件中都存在。如@Override,@Deprecated,@Suppvisewarnings
+- 编译时注解:注解在源码和.class文件中都存在。如@Override, @Deprecated @Suppvisewarnings 
 - 运行时注解:在运行阶段还起作用，甚至会影响运行逻辑的注解。如@Autowired
 
 <!--more-->
