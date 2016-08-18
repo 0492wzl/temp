@@ -1,6 +1,6 @@
 ---
 title: Java实现对称加密
-date: 2016-08-18 14:29:13
+date: 2016-04-18 14:29:13
 categories: JAVA
 tags: JAVA加解密
 
@@ -15,15 +15,15 @@ tags: JAVA加解密
 - PBE
 - IDEA
 
+<!--more-->
+
 ----------  
 
 ## DES
 DES(Data Encryption Standard)数据加密标准
 
-| 密钥长度 | 默认 | 工作模式 | 填充方式 | 实现方 |
-|:-------:|:---:|:--------:|:--------:|:--------:|
-| 56      |56    | ECB,CBC,PCBC,CTR,CTS,CFB,CFB8到128,OFB,OFB8到128 | NoPadding,PKCS5Padding,ISO10126Padding | JDK |
-| 64      |56    | 同上 | PKCS7Padding,ISO10126d2Padding,X932Padding,ISO7816d4Padding,ZeroBytePadding | BC |
+![](http://oc1kexygx.bkt.clouddn.com/secret/DES-1.png)
+
 
 实现方式
 - jdkDES
@@ -53,7 +53,7 @@ DES(Data Encryption Standard)数据加密标准
 		System.out.println("jdk des dncrypt:" + new String(result));
 	}
 </pre>
-　
+
 - bcDES
 
 <pre>
@@ -86,6 +86,7 @@ DES(Data Encryption Standard)数据加密标准
 
 工作流
 ![](http://oc1kexygx.bkt.clouddn.com/secret/DES.png)
+
 ----------  
 
 ## 3重DES
@@ -94,10 +95,7 @@ DES(Data Encryption Standard)数据加密标准
  - 迭代次数提高
 3DES(Triple DES或DESede)
 
-| 密钥长度 | 默认 | 工作模式 | 填充方式 | 实现方 |
-|:-------:|:---:|:--------:|:--------:|:--------:|
-| 112,168 | 168  | ECB,CBC,PCBC,CTR,CTS,CFB,CFB8到128,OFB,OFB8到128 | NoPadding,PKCS5Padding,ISO10126Padding | JDK |
-| 128,192 | 168  | 同上 | PKCS7Padding,ISO10126d2Padding,X932Padding,ISO7816d4Padding,ZeroBytePadding | BC |
+![](http://oc1kexygx.bkt.clouddn.com/secret/3DES.png)
 
 实现方式
 
@@ -145,10 +143,7 @@ DES(Data Encryption Standard)数据加密标准
 - 通常用于移动通信系统加密以及基于SSH协议的软件
 - 更加高级，是DES的替代者
 
-| 密钥长度 | 默认 | 工作模式 | 填充方式 | 实现方 |
-|:-------:|:---:|:--------:|:--------:|:--------:|
-| 128,192,256 | 128  | ECB,CBC,PCBC,CTR,CTS,CFB,CFB8到128,OFB,OFB8到128 | NoPadding,PKCS5Padding,ISO10126Padding | JDK(256位密钥需要获得无政策限制文件) |
-| 同上 | 同上  | 同上 | PKCS7Padding,ZeroBytePadding | BC |
+![](http://oc1kexygx.bkt.clouddn.com/secret/AES-1.png)
 
 实现方式
 
@@ -187,6 +182,7 @@ DES(Data Encryption Standard)数据加密标准
 
 工作流
 ![](http://oc1kexygx.bkt.clouddn.com/secret/AES.png)
+
 ----------  
 
 ## PEB
@@ -198,6 +194,8 @@ PEB算法结合了消息摘要算法和对称加密算法的优点
 
 ![](http://oc1kexygx.bkt.clouddn.com/secret/PBE-1.png)
 ![](http://oc1kexygx.bkt.clouddn.com/secret/PBE-2.png)
+
+实现方式
 
 <pre>
 	private static void jdkPBE() throws Exception{
