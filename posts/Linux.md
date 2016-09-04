@@ -7,6 +7,82 @@ tags: Linux
 ---
 
 
+## Linux安装 ##
+
+### 虚拟机配置 ###
+- 内存：centos6.3 最小需要618M内存
+- 处理器：虚拟化Intel VT-x/...把真实CPU性能映射到虚拟机中
+- CD/DVD：已连接 需要选中
+- 网络适配器：
+ - 桥接：虚拟机和真实机通信用的是真实网卡，配置简单，但是需要占用真实机网段的IP
+ - NAT:使用VMnet8网卡与真实机通信，虚拟机只能与真实机通信，而不能与网段内其他机器通信，可以上网
+ - Host-only：使用VMnet1网卡与真实机通信，虚拟机只能与真实机通信，而不能与网段内其他机器通信，**不可以上网**
+
+<!--more-->
+
+### 系统分区 ###
+- 分区类型
+ - 主分区：最多只能是4个
+ - 扩展分区：
+    - 最多只能有1个
+    - 主分区加扩展分区最多有4个
+    - 不能写入数据，只能包含逻辑分区
+ - 逻辑分区
+- 格式化
+ - 又称逻辑格式化，它是指根据用户选定的文件系统（如FAT16,FAT32,NTFS,EXT2,EXT3,EXT4等），在磁盘特定区域写入特定数据，在分区中划出一片用于存放文件的分配表、目录表等用于文件管理的磁盘空间。
+    - FAT16:最大只能支持2GB的分区
+    - FAT32:最大支持16T的分区，单个文件大小不能超过4GB
+    - NTFS:windows中支持更大分区、更大单个文件的文件系统
+    - EXT2\EXT3\EXT4:Linux专有文件系统
+- 分区设备文件名
+ - 设备文件名
+    - /dev/hda1(IDE硬盘接口)，hd代表硬盘接口，a代表第一块硬盘，1代表第一个分区
+    - /dev/sda1(SCSI硬盘接口，SATA硬盘接口)
+- 挂载
+ - 必须分区
+    - /(根分区)
+    - swap分区(交换分区，内存2倍，不超过2GB)
+ - 推荐分区
+    - /boot(启动分区，200MB)
+
+### Linux系统安装 ###
+| 设备 | 大小(MB) | 挂载点/RAID/卷 | 类型 |
+|:--:|:--:|:--:|:--:|
+| sda1 | 200 | /boot | ext4 |
+| sda2 | 2000 | /home | ext4 |
+| sda3 | 1000 | - | swap |
+| sda4(扩展分区，会变成sda5) | 剩余空间 | / | ext4 |
+
+- 软件包选择
+ - Desktop(桌面)
+ - Minimal Desktop(最小化桌面)
+ - Minimal(最小化)，正式做服务器
+ - Basic Server(基本服务器)，初学者适用*
+ - Database Server(数据库服务器)
+ - Web Server(网页服务器)
+ - Virtual Host(虚拟主机)
+ - software development workstation(软件开发工作站)
+
+- 远程链接虚拟机
+
+<pre>
+xshell快速链接VMware方法：
+
+1.VMware中设置ip地址：ifconfig eth0 192.168.1.117 netmask 255.255.255.0;
+
+使用桥接方式，
+
+2.控制面板\网络和 Internet\网络连接：
+
+WLAN,VMware Network Adapter VMnet1/VMnet8 属性设置勾选 VMware Bridge protocal.
+
+并且中VMware Network Adapter VMnet1属性中的Internet协议版本4中选择 自动获取IP地址；
+
+3.Xshell中设置ip与VMware中一致即可；且用户身份验证为 root；
+</pre>
+
+----------
+
 ## 命令基本格式及文件处理命令 ##
 
 ### 命令基本格式 ###
@@ -15,8 +91,6 @@ tags: Linux
 	`localhost`:主机名  
 	`~`:当前所在目录(家目录)  
 	`#`:超级用户提示符，普通用户提示符为`$`  
-
-<!--more-->
 
 ### 常用目录作用 ###
 - /	根目录
