@@ -1,11 +1,13 @@
+[user]
+	email = 317307146@qq.com
+	name = coldjokes
+[http]
+	sslVerify = false
+	postBuffer = 524288000
 [alias]
 	st = status
 	a = add .
 	al = add --all
 	c = commit -m 'default commit message'
-	cm = commit -m
-[user]
-	name = 王一峰
-	email = wangyf@vastio.com
-[gui]
-	recentrepo = D:/gitSource/me
+	cm = "commit -m "
+	p = push
